@@ -1,7 +1,7 @@
 (ns journalist.core
-  (:gen-class))
+  (:gen-class)
+  (:use  ring.adapter.jetty)
+  (:require [journalist.web.routes :as web]))
 
-(defn -main
-  "I don't do a whole lot ... yet."
-  [& args]
-  (println "Hello, World!"))
+(defn -main [& args]
+  (run-jetty #'web/app {:port 8080}))
