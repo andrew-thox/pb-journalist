@@ -10,7 +10,7 @@ pom.xml.asc
 .hgignore
 .hg/
 .idea/
-printer.iml
+journalist.iml
 /chef/cookbooks
 .DS_Store
 *.lock
