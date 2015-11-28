@@ -7,7 +7,9 @@
                  [clj-json "0.3.2"]
                  [compojure "1.4.0"]
                  [ring/ring-jetty-adapter "1.4.0"]
-                 [ring-json-params "0.1.0"]]
+                 [ring-json-params "0.1.0"]
+                 ;logging
+                 [ch.qos.logback/logback-classic "1.1.3"]]
   :main ^:skip-aot journalist.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})
