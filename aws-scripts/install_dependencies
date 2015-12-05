@@ -1,0 +1,20 @@
+#!/bin/bash
+apt-get -y update
+
+#Create projects directory
+mkdir -p /home/ubuntu/projects
+
+#Install Chef/Knife
+/home/ubuntu/projects/printer/chef/install.sh
+
+#Configure chef node
+cd /home/ubuntu/projects/printer/chef
+tar -xvzf cookbooks-*.tar.gz
+chef-client -z
+knife node run_list add -z printer recipe[lein]
+knife node run_list add -z printer recipe[git]
+knife node run_list add -z printer recipe[rabbitmq]
+knife node run_list add -z printer recipe[rabbitmq-management]
+
+#Provision node
+chef-client -z
