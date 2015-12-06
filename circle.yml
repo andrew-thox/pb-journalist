@@ -10,5 +10,5 @@ deployment:
           s3_location:
             bucket: pb-journalist-deployments
             key_pattern: pb-journalist-{SHORT_COMMIT}-{BUILD_NUM}
-        deployment_group: PBQSpottingServers
+        deployment_group: PBSpottingServers
         deployment_config: CodeDeployDefault.AllAtOnce
