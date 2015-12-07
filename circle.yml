@@ -2,7 +2,7 @@ deployment:
   staging:
     branch: master
     codedeploy:
-      pb-printer:
+      pb-journalist:
         application_root: /
         region: eu-central-1
         revision_location:
