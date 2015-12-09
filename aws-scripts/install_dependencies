@@ -17,6 +17,9 @@ knife node run_list add -z printer recipe[git]
 #Provision node
 chef-client -z
 
+#Set up logging
+touch /var/log/paperboy/pb.log
+
 #Create uberjar
 cd /home/ubuntu/projects/journalist
 lein uberjar

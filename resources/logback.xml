@@ -6,7 +6,7 @@
   </appender>
 
   <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-    <file>test.log</file>
+    <file>/var/log/paperboy/pb.log</file>
     <append>true</append>
     <!-- encoders are assigned the type
          ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
