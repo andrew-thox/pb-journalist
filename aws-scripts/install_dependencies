@@ -16,3 +16,7 @@ knife node run_list add -z printer recipe[git]
 
 #Provision node
 chef-client -z
+
+#Create uberjar
+cd /home/ubuntu/projects/journalist
+lein uberjar

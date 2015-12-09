@@ -6,5 +6,5 @@ files:
 hooks:
   AfterInstall:
     - location: aws-scripts/install_dependencies
-      timeout: 3000
+      timeout: 30000
       runas: root
