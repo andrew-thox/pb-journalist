@@ -1,0 +1,10 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/projects/journalist
+hooks:
+  AfterInstall:
+    - location: aws-scripts/install_dependencies
+      timeout: 3000
+      runas: root
