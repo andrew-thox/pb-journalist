@@ -5,10 +5,10 @@ apt-get -y update
 mkdir -p /home/ubuntu/projects
 
 #Install Chef/Knife
-/home/ubuntu/projects/printer/chef/install.sh
+/home/ubuntu/projects/journalist/chef/install.sh
 
 #Configure chef node
-cd /home/ubuntu/projects/printer/chef
+cd /home/ubuntu/projects/journalist/chef
 tar -xvzf cookbooks-*.tar.gz
 chef-client -z
 knife node run_list add -z printer recipe[lein]
