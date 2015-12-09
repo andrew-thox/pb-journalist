@@ -23,3 +23,4 @@ touch /var/log/paperboy/pb.log
 #Create uberjar
 cd /home/ubuntu/projects/journalist
 lein uberjar
+java -jar target/uberjar/journalist*.jar
