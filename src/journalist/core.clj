@@ -7,4 +7,5 @@
 
 (defn -main [& args]
   (log/info (env :amqp-url))
+  (log/info (env :queue-name))
   (run-jetty #'web/app {:port 8080}))
