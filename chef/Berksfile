@@ -1,4 +1,0 @@
-source 'https://api.berkshelf.com'
-
-cookbook 'lein', '~> 1.0.0'
-cookbook 'git', '~> 4.3.4'

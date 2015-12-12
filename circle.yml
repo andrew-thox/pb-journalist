@@ -1,14 +1,5 @@
 deployment:
-  staging:
+  dockerhub:
     branch: master
-    codedeploy:
-      pb-journalist:
-        application_root: /
-        region: eu-central-1
-        revision_location:
-          revision_type: S3
-          s3_location:
-            bucket: pb-journalist-deployments
-            key_pattern: pb-journalist-{SHORT_COMMIT}-{BUILD_NUM}
-        deployment_group: PBSpottingServers
-        deployment_config: CodeDeployDefault.AllAtOnce
+    commands:
+      - $TRIGGER_DOCKER_HUB_BUILD
