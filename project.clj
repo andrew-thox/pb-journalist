@@ -17,6 +17,8 @@
                  [ch.qos.logback/logback-classic "1.1.3"]
                  ;environment
                  [environ "0.5.0"]
+                 ;utils
+                 [clj-time "0.11.0"]
                  ]
   :plugins [[lein-environ "1.0.1"]]
   :main ^:skip-aot journalist.core

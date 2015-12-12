@@ -2,7 +2,9 @@
      (:gen-class)
      (:refer-clojure :exclude [resolve])
      (:use ring.middleware.json-params)
-     (:require [clj-json.core :as json]
+     (:require [journalist.new_statesman.rss_reader]
+               [journalist.new_statesman.archive]
+               [clj-json.core :as json]
                [journalist.logging.log :as log]
                [journalist.utils]
                [compojure.core :refer [defroutes GET]])
