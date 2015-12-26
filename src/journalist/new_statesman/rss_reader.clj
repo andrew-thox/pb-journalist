@@ -8,7 +8,8 @@
 
 
 (def new_statesman_feed (html/xml-resource (java.net.URL. "http://www.newstatesman.com/feeds/site_feed.rss")))
-(def date-formatter (f/formatter (t/default-time-zone) "YYYY-MM-dd" "E, dd MMM YYYY HH:mm:ss Z"))
+;E is day of the week, src: http://www.rabblemedia.net/java-simple-date-fomat-cheatsheet.html
+(def date-formatter (f/formatter (t/default-time-zone) "YYYY-MM-dd HH:mm:ss" "E, dd MMM YYYY HH:mm:ss Z"))
 
 ;TODO: Actually adding this to the queue should be optional
 (defn process-article [article]
@@ -16,7 +17,8 @@
                      :title (join (map html/text (html/select article [:title])))
                      :link (join (map html/text (html/select article [:link])))
                      :publication "New Statesman"
-                     :publish_date (f/unparse date-formatter (f/parse date-formatter (join (map html/text (html/select article [:pubDate])))))}]
+                     :publish_date (f/unparse date-formatter (f/parse date-formatter (join (map html/text (html/select article [:pubDate])))))
+                     :acquistion_date (f/unparse date-formatter (t/now))}]
     (do (queue/publish-article article-map) article-map)))
 
 

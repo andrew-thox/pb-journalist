@@ -14,7 +14,7 @@
 (def contributors_url "http://www.newstatesman.com/our-writers")
 
 ;Will allow inputs from either format, but will output in the first
-(def date-formatter (f/formatter (t/default-time-zone) "YYYY-MM-dd" "dd MMM yyyy"))
+(def date-formatter (f/formatter (t/default-time-zone) "YYYY-MM-dd HH:mm:ss" "dd MMM yyyy"))
 
 
 (defn get-article [uri]
@@ -43,7 +43,8 @@
                      :title (trim (first (map html/text (html/html-snippet (first (:content (nth a-tags 1)))))))
                      :link (str base_url (join (:href (:attrs (nth a-tags 1)))))
                      :publication "New Statesman"
-                     :publish_date (get-publish-date (str base_url (join (:href (:attrs (nth a-tags 1))))))}]
+                     :publish_date (get-publish-date (str base_url (join (:href (:attrs (nth a-tags 1))))))
+                     :acquistion_date (f/unparse date-formatter (t/now))}]
     (do (log/info (:title article-map)) (queue/publish-article article-map) article-map)))
 
 
