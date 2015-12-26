@@ -7,7 +7,7 @@
             [journalist.logging.log :as log]))
 
 
-(def new_statesman_feed (html/xml-resource (java.net.URL. "http://www.newstatesman.com/feeds/site_feed.rss")))
+(def new_statesman_feed "http://www.newstatesman.com/feeds/site_feed.rss")
 ;E is day of the week, src: http://www.rabblemedia.net/java-simple-date-fomat-cheatsheet.html
 (def date-formatter (f/formatter (t/default-time-zone) "YYYY-MM-dd HH:mm:ss" "E, dd MMM YYYY HH:mm:ss Z"))
 
@@ -21,10 +21,9 @@
                      :acquistion_date (f/unparse date-formatter (t/now))}]
     (do (queue/publish-article article-map) article-map)))
 
-
 (defn process_rss_feed []
   (log/info "processing new-statesmen rss feed")
-  (let [articles (html/select new_statesman_feed [:item])]
+  (let [articles (html/select (html/xml-resource (java.net.URL. new_statesman_feed)) [:item])]
     (for [article articles]
       (process-article article))))
 
