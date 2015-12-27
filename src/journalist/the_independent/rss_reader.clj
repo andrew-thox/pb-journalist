@@ -17,6 +17,7 @@
                      :acquistion_date (f/unparse ISO8601-X-formatter (t/now))}]
     article-map))
 
+;TODO: This function can be shared across all outlets
 (defn process-rss-feed [feed]
   (let [feed ((keyword feed) rss-feeds)
         articles (html/select (html/xml-resource (java.net.URL. feed)) [:item])]
