@@ -1,11 +1,16 @@
 (ns journalist.core
   (:gen-class)
-  (:use  ring.adapter.jetty)
-  (:require [journalist.web.routes :as web]
-            [journalist.logging.log :as log]
-            [environ.core :refer [env]]))
+  (:require [journalist.consumers :as consumers]
+            [environ.core :refer [env]]
+            [langohr.channel :as lch]
+            [langohr.core :as rmq]
+            [langohr.queue :as lq]
+            [langohr.consumers :as lc]))
 
 (defn -main [& args]
-  (log/info (env :amqp-url))
-  (log/info (env :queue-name))
-  (run-jetty #'web/app {:port 8080}))
+  (let [conn  (rmq/connect {:uri (env :amqp-url)})
+        ch    (lch/open conn)]
+    (println (format "[main] Connected. Channel id: %d" (.getChannelNumber ch)))
+    (lq/declare ch (env :task-queue-name) {:exclusive false :auto-delete false})
+    (lc/subscribe ch (env :task-queue-name) consumers/task-consumer {:auto-ack true})
+    (.addShutdownHook (Runtime/getRuntime) (Thread. #(do (rmq/close ch) (rmq/close conn))))))

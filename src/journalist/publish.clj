@@ -3,16 +3,18 @@
             [langohr.core :as rmq]
             [langohr.basic :as lb]
             [langohr.channel :as lch]
-            [clj-json.core :as json]))
+            [abracad.avro :as avro]
+            [journalist.schemas :as schemas]
+            [journalist.logging.log :as log]))
 
 
 (defn publish-article [article]
   (let [conn  (rmq/connect {:uri (env :amqp-url)})
         ch    (lch/open conn)]
-    (lb/publish ch "" (env :queue-name)
-      (json/generate-string article)
-      {:content-type "application/json"
+    (lb/publish ch "" (env :article-queue-name)
+      (->> article (avro/binary-encoded schemas/auto-schema))
+      {:content-type "avro/binary"
        :type "article"
-       :source "new-statesman"})
+       :source "pb.journalist"})
     (rmq/close ch)
-    (rmq/close conn)))
+    (rmq/close conn))0)
