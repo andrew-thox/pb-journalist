@@ -6,7 +6,7 @@
             [journalist.publish :as queue]
             [journalist.logging.log :as log]
             ;It would be cool if we could have a better way to do this
-            [journalist.new_statesman.rss_reader :as ns-rss]
+            [journalist.new_statesman.rss_reader]
             [journalist.new_statesman.archive]))
 
 (defn task-consumer
