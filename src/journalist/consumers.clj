@@ -6,8 +6,7 @@
             [journalist.publish :as queue]
             [journalist.logging.log :as log]
             ;It would be cool if we could have a better way to do this
-            [journalist.new_statesman.rss_reader]
-            [journalist.new_statesman.archive]))
+            [journalist.new_statesman.rss_reader]))
 
 (defn task-consumer
   [ch {:keys [content-type delivery-tag] :as meta} ^bytes payload]
