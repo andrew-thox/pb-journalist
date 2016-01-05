@@ -18,5 +18,6 @@
    :acquistion_date (c/to-long (t/now))})
 
 (defn process_rss_feed []
+  (log/info "parsing New Statesman RSS feed")
   (map process-article (html/select (html/xml-resource (java.net.URL. new_statesman_feed)) [:item])))
 

@@ -19,6 +19,7 @@
 
 ;TODO: This function can be shared across all outlets
 (defn process-rss-feed [feed]
+  (log/info "parsing The Independent RSS feed")
   (let [feed ((keyword feed) rss-feeds)
         articles (html/select (html/xml-resource (java.net.URL. feed)) [:item])]
     (process-article (first articles))))
