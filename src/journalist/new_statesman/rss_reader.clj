@@ -3,7 +3,8 @@
   (:require [clj-time.format :as f]
             [clj-time.core :as t]
             [clj-time.coerce :as c]
-            [net.cgrand.enlive-html :as html]))
+            [net.cgrand.enlive-html :as html]
+            [journalist.logging.log :as log]))
 
 (def new_statesman_feed "http://www.newstatesman.com/feeds/site_feed.rss")
 ;E is day of the week, src: http://www.rabblemedia.net/java-simple-date-fomat-cheatsheet.html
