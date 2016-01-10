@@ -12,5 +12,5 @@
         ch    (lch/open conn)]
     (println (format "[main] Connected. Channel id: %d" (.getChannelNumber ch)))
     (lq/declare ch (env :task-queue-name) {:exclusive false :auto-delete false})
-    (lc/subscribe ch (env :task-queue-name) consumers/task-consumer {:auto-ack true})
+    (lc/subscribe ch (env :task-queue-name) consumers/task-consumer {:auto-ack false})
     (.addShutdownHook (Runtime/getRuntime) (Thread. #(do (rmq/close ch) (rmq/close conn))))))

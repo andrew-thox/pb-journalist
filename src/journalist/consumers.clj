@@ -1,6 +1,7 @@
 (ns journalist.consumers
   (:require [clojure.string :as str]
             [abracad.avro :as avro]
+            [langohr.basic :as lb]
             [journalist.utils]
             [journalist.schemas :as schemas]
             [journalist.publish :as queue]
@@ -15,5 +16,7 @@
         acq-fn-ns (first (str/split acq-fn-spec #"/"))
         acq-fn-name (last (str/split acq-fn-spec #"/"))
         acq-fn (ns-resolve (symbol acq-fn-ns) (symbol (name acq-fn-name)))]
-    (log/info "processing task")
-    (doall (map queue/publish-article (acq-fn)))))
+    ;TODO: This log line could be formatted a bit better
+    (log/info "processing task - " (:outlet task) ":" (:acquisition-method task))
+    (map queue/publish-article (acq-fn)
+    (lb/ack ch delivery-tag))))
