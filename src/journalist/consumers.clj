@@ -18,5 +18,5 @@
         acq-fn (ns-resolve (symbol acq-fn-ns) (symbol (name acq-fn-name)))]
     ;TODO: This log line could be formatted a bit better
     (log/info "processing task - " (:outlet task) ":" (:acquisition-method task))
-    (map queue/publish-article (acq-fn)
-    (lb/ack ch delivery-tag))))
+    (doall (map queue/publish-article (acq-fn)))
+    (lb/ack ch delivery-tag)))
