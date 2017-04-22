@@ -21,7 +21,8 @@
                  [com.damballa/abracad "0.4.13"]
                  ;utils
                  [clj-time "0.11.0"]]
-  :plugins [[lein-environ "1.0.1"]]
+  :plugins [[lein-environ "1.0.1"]
+            [lein-gorilla "0.4.0"]]
   :main ^:skip-aot journalist.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})

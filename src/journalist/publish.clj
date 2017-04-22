@@ -13,8 +13,10 @@
         ch    (lch/open conn)]
     (lb/publish ch "" (env :article-queue-name)
       (->> article (avro/binary-encoded schemas/auto-schema))
-      {:content-type "avro/binary"
+      {:mandatory true
+       :content-type "avro/binary"
        :type "article"
        :source "pb.journalist"})
+    (println "publishing article")
     (rmq/close ch)
     (rmq/close conn))0)
