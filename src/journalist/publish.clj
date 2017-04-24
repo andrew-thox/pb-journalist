@@ -17,6 +17,5 @@
        :content-type "avro/binary"
        :type "article"
        :source "pb.journalist"})
-    (println "publishing article")
     (rmq/close ch)
     (rmq/close conn))0)
